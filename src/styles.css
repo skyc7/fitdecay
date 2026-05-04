@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0A0A0B;
+  --surface: #141416;
+  --card: #1C1C1F;
+  --card-hover: #222226;
+  --border: #2A2A2E;
+  --border-subtle: #222225;
+  --text-primary: #F4F4F5;
+  --text-secondary: #A1A1AA;
+  --text-tertiary: #8A8A94;
+  --accent: #C5FF3D;
+  --accent-dim: rgba(197, 255, 61, 0.12);
+  --green: #4ADE80;
+  --green-dim: rgba(74, 222, 128, 0.12);
+  --amber: #FBBF24;
+  --amber-dim: rgba(251, 191, 36, 0.12);
+  --red: #F87171;
+  --red-dim: rgba(248, 113, 113, 0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  color-scheme: dark;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3A3A3F; }
+* { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up { animation: fadeUp 250ms ease-out both; }
+
+/* Form fields */
+.field {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 150ms;
+  box-sizing: border-box;
+}
+.field:focus { border-color: rgba(197, 255, 61, 0.4); }
+.field::placeholder { color: var(--text-tertiary); }
+select.field option { background: var(--surface); color: var(--text-primary); }
+textarea.field { resize: vertical; }
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #0A0A0B;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 150ms, opacity 150ms;
+  white-space: nowrap;
+}
+.btn-primary:hover { background: #d4ff50; }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.pressable { min-height: 44px; transition: transform 120ms ease, background 150ms, opacity 150ms; }
+.pressable:active { transform: scale(0.98); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 150ms;
+  white-space: nowrap;
+}
+.btn-ghost:hover { background: var(--card-hover); }
+
+/* Cards */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+/* Label (small caps) */
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* Mono numbers */
+.mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Tight headings */
+.tight {
+  font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.icon-help {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-tertiary);
+  display: inline-grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .mobile-sheet {
+    position: fixed !important;
+    inset: auto 0 0 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    border-radius: 18px 18px 0 0 !important;
+    max-height: 88vh;
+    overflow: auto;
+    padding-bottom: calc(24px + env(safe-area-inset-bottom)) !important;
+  }
+}
